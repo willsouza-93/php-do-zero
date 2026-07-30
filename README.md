@@ -56,6 +56,39 @@ Aprendemos:
 
 A classe `Transaction` passou a concentrar os dados de cada transação: descrição, tipo e valor.
 
+### Aula 4 — Comportamento dentro dos objetos
+
+Nesta aula, começamos a mover regras relacionadas à transação para dentro da própria classe.
+
+Aprendemos:
+
+- diferença entre um objeto guardar dados e também oferecer comportamentos;
+- criação dos métodos `isIncome()` e `isExpense()`;
+- métodos que retornam valores booleanos;
+- uso dos métodos do objeto dentro de funções de cálculo;
+- redução do conhecimento externo sobre os valores internos de `type`;
+- uso do operador ternário para exibir resultados simples;
+- princípio de manter próximas as regras e os dados aos quais elas pertencem.
+
+Com isso, as funções de cálculo deixaram de comparar diretamente strings como `income` e `expense` e passaram a perguntar ao objeto qual é o seu tipo.
+
+### Aula 5 — Encapsulamento e acesso controlado aos dados
+
+Nesta aula, protegemos o estado interno da classe `Transaction` e definimos como outras partes do programa podem acessar seus dados.
+
+Aprendemos:
+
+- diferença entre propriedades `public` e `private`;
+- encapsulamento;
+- promoção de propriedades no construtor;
+- criação de métodos getters;
+- uso de `getDescription()` e `getAmount()`;
+- manutenção dos métodos de comportamento `isIncome()` e `isExpense()`;
+- substituição do acesso direto às propriedades por chamadas de métodos;
+- importância de controlar como o estado de um objeto é lido e alterado.
+
+O exercício passou a listar cada transação por meio dos getters e continuou calculando receitas, despesas, saldo e quantidade total.
+
 ## Estrutura atual
 
 ```text
@@ -63,7 +96,17 @@ php-do-zero/
 ├── aula-01.php
 ├── aula-02.php
 ├── aula-03.php
+├── aula-04.php
+├── aula-05.php
 └── README.md
 ```
 
-> O arquivo `aula-03.php` pode ainda não estar presente na branch principal enquanto estiver sendo trabalhado localmente.
+## Executando os exercícios
+
+Cada aula pode ser executada separadamente pelo terminal:
+
+```bash
+php aula-01.php
+```
+
+Substitua o número do arquivo pela aula desejada.
