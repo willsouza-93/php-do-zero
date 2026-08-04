@@ -13,13 +13,8 @@ class Transaction
     ) {
         $description = trim($description);
 
-        if ($description === '') {
-            throw new InvalidArgumentException('A descrição da transação não pode ficar vazia.');
-        }
-
-        if ($this->amount <= 0) {
-            throw new InvalidArgumentException('O valor da transação deve ser maior que zero.');
-        }
+        $this->validateDescription($description);
+        $this->validateAmount($this->amount);
 
         $this->description = $description;
     }
@@ -47,5 +42,23 @@ class Transaction
     public function isExpense(): bool
     {
         return $this->type === TransactionType::Expense;
+    }
+
+    private function validateDescription(string $description): void
+    {
+        if ($description === '') {
+            throw new InvalidArgumentException(
+                'A descrição da transação é obrigatória.'
+            );
+        }
+    }
+
+    private function validateAmount(float $amount): void
+    {
+        if ($amount <= 0) {
+            throw new InvalidArgumentException(
+                'O valor da transação deve ser maior que zero.'
+            );
+        }
     }
 }
