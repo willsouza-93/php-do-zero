@@ -89,6 +89,73 @@ Aprendemos:
 
 O exercício passou a listar cada transação por meio dos getters e continuou calculando receitas, despesas, saldo e quantidade total.
 
+### Aula 6 — Validação e proteção do estado do objeto
+
+Nesta aula, a classe `Transaction` passou a impedir a criação de objetos com dados inválidos.
+
+Aprendemos:
+
+- validação dentro do construtor;
+- normalização de texto com `trim()`;
+- rejeição de descrições vazias;
+- validação dos tipos permitidos com `in_array()` e comparação estrita;
+- rejeição de valores menores ou iguais a zero;
+- lançamento de exceções com `InvalidArgumentException`;
+- importância de garantir que um objeto já nasça em um estado válido.
+
+A regra de negócio deixou de depender apenas de quem cria a transação: a própria classe passou a proteger seus dados.
+
+### Aula 7 — Enum para representar tipos válidos
+
+Nesta aula, substituímos as strings `income` e `expense` pelo enum `TransactionType`.
+
+Aprendemos:
+
+- criação de um `enum` apoiado por `string`;
+- declaração dos casos `Income` e `Expense`;
+- uso do enum como tipo de uma propriedade e de um parâmetro;
+- comparação entre casos de enum;
+- retorno de enum pelo getter `getType()`;
+- criação do método `label()` com `match`;
+- possibilidade de converter dados externos com `TransactionType::tryFrom()`;
+- prevenção de valores inválidos por meio do sistema de tipos.
+
+Com o enum, deixamos de depender de strings soltas e passamos a representar explicitamente todas as opções aceitas pelo domínio.
+
+### Aula 8 — Promoção de propriedades e imutabilidade com `readonly`
+
+Nesta aula, refinamos a implementação da classe `Transaction` e tornamos seu estado imutável após a construção.
+
+Aprendemos:
+
+- revisão da promoção de propriedades no construtor;
+- uso de propriedades `readonly`;
+- diferença entre declarar uma propriedade separadamente e promovê-la;
+- motivo para manter `description` fora da promoção, permitindo aplicar `trim()` antes da atribuição final;
+- promoção de `type` e `amount` diretamente no construtor;
+- manutenção das validações e dos comportamentos já existentes;
+- proteção contra alterações posteriores no estado da transação.
+
+A classe passou a deixar explícito que uma transação, depois de criada e validada, não pode ter seus dados substituídos.
+
+### Aula 9 — Separação de arquivos e carregamento manual
+
+Nesta aula, dividimos o exemplo em arquivos com responsabilidades distintas.
+
+Aprendemos:
+
+- separação do enum em `TransactionType.php`;
+- separação da classe em `Transaction.php`;
+- uso de `index.php` como ponto de entrada e execução;
+- carregamento de arquivos com `require_once`;
+- uso de `__DIR__` para construir caminhos seguros;
+- importância da ordem de carregamento: enum, classe e execução;
+- diferença geral entre `require`, `require_once`, `include` e `include_once`;
+- uso de `declare(strict_types=1)` em cada arquivo PHP;
+- início da organização do código em componentes menores.
+
+O comportamento do programa permaneceu o mesmo, mas a estrutura passou a preparar o projeto para formas mais automáticas de carregamento de classes.
+
 ## Estrutura atual
 
 ```text
@@ -98,15 +165,28 @@ php-do-zero/
 ├── aula-03.php
 ├── aula-04.php
 ├── aula-05.php
+├── aula-06.php
+├── aula-07.php
+├── aula-08.php
+├── aula-09/
+│   ├── index.php
+│   ├── Transaction.php
+│   └── TransactionType.php
 └── README.md
 ```
 
 ## Executando os exercícios
 
-Cada aula pode ser executada separadamente pelo terminal:
+As aulas 1 a 8 podem ser executadas separadamente pelo terminal:
 
 ```bash
 php aula-01.php
 ```
 
 Substitua o número do arquivo pela aula desejada.
+
+A Aula 9 possui um ponto de entrada dentro de sua própria pasta:
+
+```bash
+php aula-09/index.php
+```
