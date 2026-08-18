@@ -156,6 +156,23 @@ Aprendemos:
 
 O comportamento do programa permaneceu o mesmo, mas a estrutura passou a preparar o projeto para formas mais automáticas de carregamento de classes.
 
+### Aula 10 — Namespaces e organização do domínio
+
+Nesta aula, demos um passo além na organização dos arquivos e passamos a identificar explicitamente as classes do domínio com namespaces.
+
+Aprendemos:
+
+- declaração de namespace com `namespace App\Domain;`;
+- importação de classes e enums com `use`;
+- diferença entre o nome simples de uma classe e seu nome completo dentro de um namespace;
+- organização do código em `src/Domain`;
+- uso de `use InvalidArgumentException` dentro da classe de domínio;
+- manutenção do carregamento manual com `require_once` enquanto os tipos passam a ter namespace;
+- extração das validações para métodos privados como `validateDescription()` e `validateAmount()`;
+- separação entre o fluxo principal da aplicação, em `index.php`, e as regras internas da entidade `Transaction`.
+
+O programa continuou produzindo os mesmos cálculos e listando as transações, mas a estrutura passou a representar melhor a ideia de domínio e a preparar o caminho para um carregamento de classes mais automatizado no futuro.
+
 ## Estrutura atual
 
 ```text
@@ -172,6 +189,12 @@ php-do-zero/
 │   ├── index.php
 │   ├── Transaction.php
 │   └── TransactionType.php
+├── aula-10/
+│   ├── index.php
+│   └── src/
+│       └── Domain/
+│           ├── Transaction.php
+│           └── TransactionType.php
 └── README.md
 ```
 
@@ -185,8 +208,9 @@ php aula-01.php
 
 Substitua o número do arquivo pela aula desejada.
 
-A Aula 9 possui um ponto de entrada dentro de sua própria pasta:
+As Aulas 9 e 10 possuem um ponto de entrada dentro de suas próprias pastas:
 
 ```bash
 php aula-09/index.php
+php aula-10/index.php
 ```
